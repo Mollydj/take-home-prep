@@ -3,7 +3,7 @@ export const JobSearchInput = ({
   setSearchInput,
 }: {
   searchInput: string;
-  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  setSearchInput: (input: string) => void;
 }) => {
   return (
     <input

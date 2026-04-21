@@ -2,7 +2,7 @@ import type { JobType } from "../services/getJobs";
 
 export const JobCard = ({ job }: { job: JobType }) => {
   return (
-    <div className="job-card" key={job.jobId}>
+    <div className="job-card">
       <span>
         <b>{job.jobCompanyName}</b>
       </span>
