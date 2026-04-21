@@ -7,9 +7,9 @@ export const JobCard = ({ job }: { job: JobType }) => {
         <b>{job.jobCompanyName}</b>
       </span>
       {" | "}
-      <span>{job.JobTitle}</span>
-      <span>{new Date(job.JobPostingDate).toLocaleDateString()}</span>
-      <a href={job.JobUrl} target="_blank" rel="noopener noreferrer">
+      <span>{job.jobTitle}</span>
+      <span>{new Date(job.jobPostingDate).toLocaleDateString()}</span>
+      <a href={job.jobUrl} target="_blank" rel="noopener noreferrer">
         View Job
       </a>
     </div>

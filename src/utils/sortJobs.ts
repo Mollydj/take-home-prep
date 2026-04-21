@@ -7,14 +7,14 @@ export const sortJobs = (
   if (type === "newest") {
     return [...jobs].sort(
       (a, b) =>
-        new Date(b.JobPostingDate).getTime() -
-        new Date(a.JobPostingDate).getTime(),
+        new Date(b.jobPostingDate).getTime() -
+        new Date(a.jobPostingDate).getTime(),
     );
   } else {
     return [...jobs].sort(
       (a, b) =>
-        new Date(a.JobPostingDate).getTime() -
-        new Date(b.JobPostingDate).getTime(),
+        new Date(a.jobPostingDate).getTime() -
+        new Date(b.jobPostingDate).getTime(),
     );
   }
 };

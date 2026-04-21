@@ -18,9 +18,9 @@ export type JobType = {
   jobId: string;
   jobCompanyName: string;
   jobCategory: string;
-  JobPostingDate: string;
-  JobTitle: string;
-  JobUrl: string;
+  jobPostingDate: string;
+  jobTitle: string;
+  jobUrl: string;
 };
 
 type RemotiveResponse = {
@@ -40,9 +40,9 @@ export const getJobs = async (): Promise<JobType[]> => {
     jobId: item.id.toString(),
     jobCompanyName: item.company_name,
     jobCategory: item.category,
-    JobPostingDate: item.publication_date,
-    JobTitle: item.title,
-    JobUrl: item.url,
+    jobPostingDate: item.publication_date,
+    jobTitle: item.title,
+    jobUrl: item.url,
   }));
 
   return normalizedData;

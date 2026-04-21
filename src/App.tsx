@@ -20,7 +20,7 @@ function App() {
   const filteredJobs = useMemo(() => {
     return sortJobs(sortingType, jobsData.filter(
       (job) =>
-        (job.JobTitle.toLowerCase().includes(searchInput.toLowerCase()) ||
+        (job.jobTitle.toLowerCase().includes(searchInput.toLowerCase()) ||
           job.jobCompanyName
             .toLowerCase()
             .includes(searchInput.toLowerCase())) &&
