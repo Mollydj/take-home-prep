@@ -1,74 +1,30 @@
-# React + TypeScript + Vite
+# Jobs Board Listing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Build Project
+1. Clone the repo
+2. Run `yarn install` to build the node_modules
+3. Run `yarn dev` to lanch the project in http://localhost:5173
 
-Currently, two official plugins are available:
+### Project Rationale
+My approach to this project was by achieving the MVP while balancing good performance. Given that this API is one that does not return much data and does not change often I defined the MVP as below
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+#### MVP
+- Create Search Input
+- Create Button Categories
+- Create sort buttons
+- Display Job Cards
 
-## React Compiler
+#### Project considerations
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- I decided to base this project on vite in order to quickly and efficiently get the environment started given the time constraint
+- First I fetched the API data and handled the state management by using a react hook called "UseJobs". This returns normalized data, as well as loading and error states. This makes the code more readable.
+- Then from that data i created functions for filtering and sorting from derived state memoizing state where needed. 
+**Fetch Data:** I took the normalized data and created a JobsList and Jobs Card Component and displayed the jobs, posting date, company name, title, and url.
+	- ***Tradeoff***: I could have considered more carefully what data to add but i decided to keep it very minimal to save time. I would consider placement more if I had more time, for example where does the users eye natrually travel when looking for the link to open the job listing. 
+- **Search Bar:**   Next for the search bar i used a useState hook to manage the search text. The useMemo hook will refilter the data if the company name or position name  
+  	- ***Trade off***: If I had more time I would add additional filtering options beyond just company name and position title
+- **Categories:** All jobs were filtered by category to create an array of strings. This array was mapped over with buttons for each category. Another state was used here to set the selected Category again,  reading from that same useMemoHook.
+	- ***Trade off***: I would have considered using a more clear UI principle for the active category in addition to disabled it. Disabled buttons can sometimes send the wrong message to the user by resembling a permanent change or a role access issue
+- **Sorting:**, I decided to try and keep it very close ended and only give users 2 options. Sort by Newest or Oldest. Again, the useMemo hook will refilter this data if the selected sorting type changes
+ 	- ***Trade off***: If I had more time I would add additional sorting options
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# take-home-prep
